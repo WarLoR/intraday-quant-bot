@@ -2,11 +2,18 @@ import yfinance as yf
 import pandas as pd
 import requests
 import time
+import os
 
-BOT_TOKEN = "YOUR_BOT_TOKEN"
-CHAT_ID = "YOUR_CHAT_ID"
+# ======================
+# SECURE CONFIG
+# ======================
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 def send_alert(msg):
+    if not BOT_TOKEN or not CHAT_ID:
+        print("Missing BOT_TOKEN or CHAT_ID")
+        return
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     requests.post(url, data={"chat_id": CHAT_ID, "text": msg})
 
