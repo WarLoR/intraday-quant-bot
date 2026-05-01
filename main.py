@@ -50,6 +50,7 @@ open_positions = {}
 # ======================
 def run_bot():
     print("🚀 Bot loop started")
+    send_alert("✅ Bot is alive and running")
 
     while True:
         try:
